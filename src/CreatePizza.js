@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class PizzaMaker extends Component {
+class CreatePizza extends Component {
 	render() {
 		return (
 			<div id="pizza-maker">
-				<p>This is a pizza maker</p>
+				<p>This is a Create Pizza Button</p>
 			</div>
 			);
 	}
 }
 
-export default PizzaMaker;
+export default CreatePizza;

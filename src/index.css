@@ -8,12 +8,58 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  padding: 2em;
 }
 
 main {
+	display: flex;
   flex: 1 0 auto;
 }
 
 footer {
 	display: flex;
+}
+
+#pizza-status {
+	display: flex;
+	flex: 1;
+	height: 200px;
+	min-width: 100%;
+	background-color: red;
+}
+
+#avail-toppings {
+	display: flex;
+	flex: 1;
+
+	background-color: blue;
+}
+
+#new-topping {
+	display: flex;
+	flex: 1;
+	background-color: green;
+}
+
+#pizza-list {
+	display: flex;
+	width: 200px;
+	background-color: purple;
+}
+
+#pizza-maker {
+	display: flex;
+	flex: 1;
+	background-color: yellow;
+}
+
+#status {
+	flex: display;
+	flex-flow: column;
+	width: 100%;
+}
+
+#controls {
+	display: flex;
+	flex: 1;
 }

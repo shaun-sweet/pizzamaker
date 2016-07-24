@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import PizzaList from './PizzaList.js';
-import PizzaMaker from './PizzaMaker.js';
-import NewTopping from './NewTopping.js';
+import PizzaList from './PizzaList';
+import CreatePizza from './CreatePizza';
+// import NewTopping from './NewTopping';
+import AvailToppings from './AvailToppings';
+import PizzaStatus from './PizzaStatus';
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(){
+    super()
     this.state = {
-      pizzas: {},
-      toppings: {},
+      pizzas: [],
+      toppings: []
     }
   }
+  
 
   getPizzas() {
     var that = this;
@@ -54,13 +57,15 @@ class App extends Component {
   render() {
     return (
           <div className='main-container'>
-            <p>needed components:</p>
-            <PizzaList />
-            <PizzaMaker />
-            <NewTopping />
-            <p>List current toppings to add to pizzas</p>
-            <p>Add a topping to pizza (probably nested in the list of current toppings)</p>
-            <p>Show the current toppings on a pizza</p>
+            <PizzaList pizzas={this.state.pizzas}/>
+            <div id="status">
+              <PizzaStatus />
+              <div id="controls">
+                <AvailToppings />
+                <CreatePizza />
+              </div>
+            </div>
+            
           </div>
     );
   }
