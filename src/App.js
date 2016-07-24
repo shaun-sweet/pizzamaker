@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      toppings: {}
+    }
+  }
+
+  getToppings() {
+    var that = this;
+    var request = new Request('https://pizzaserver.herokuapp.com/toppings', {
+      method: "GET",
+      mode: 'cors',
+      headers: new Headers({
+        'Content-type': 'application/json'
+      })
+    });
+    fetch(request).then(function(res) {
+      res.json().then(function(res) {
+        that.setState({'toppings': res});
+      });
+    })
+  }
+
+  componentDidMount() {
+    this.getToppings();
+  }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+          <p>To get started, edit <code>src/App.js</code> and save to reload.
+          Let's try this out.</p>
     );
   }
 }
