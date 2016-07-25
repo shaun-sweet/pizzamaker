@@ -95,7 +95,6 @@ class App extends Component {
   }
 
   handleSendToFire(){
-    var that = this;
     var request = new Request('https://pizzaserver.herokuapp.com/pizzas', {
       method: 'POST',
       mode: 'cors',
@@ -105,10 +104,7 @@ class App extends Component {
       }),
       body: this._packagePizza()
     });
-    fetch(request).then(function(res) {
-      res.json().then(function(res) {
-      });
-    });
+    fetch(request)
     this.getPizzas();
   }
 
@@ -119,7 +115,18 @@ class App extends Component {
   }
 
   sendToppingAway(){
-    
+    var request = new Request('https://pizzaserver.herokuapp.com/toppings', {
+      method: 'POST',
+      mode: 'cors',
+      headers: new Headers({
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      body: this._packageTopping()
+    });
+    fetch(request);
+    this.getToppings();
+    this.setState({makingTopping: false})
   }
 
   handleToppingName(event) {
@@ -132,34 +139,41 @@ class App extends Component {
 
   render() {
     return (
-          <div className='main-container'>
-            <PizzaList pizzas={this.state.pizzas}/>
-            <div id="middle">
-              <PizzaStatus toppingList={this.state.toppings} handleToppingClick={this.handleToppingClick.bind(this)} />
-              <div id="controls">
-                <CreateTopping 
-                startMakingTopping={this.handleMakeTopping.bind(this)}
-                makingTopping={this.state.makingTopping}
-                toppingName={this.state.topping.name}
-                changeToppingName={this.handleToppingName.bind(this)}
-                finalize={this.sendToppingAway}
-                 />
-                  <CreatePizza  
-                  handleStartMakingPizza={this.startMakingPizza.bind(this)}
-                  />  
-              </div>
-            </div>
-            <StatusInput 
-            createPizza={this.handleSendToFire.bind(this)}
-            pizzaName={this.state.currentPizza.name}
-            updateName={this.handlePizzaName.bind(this)}
-            reset={this.handleReset.bind(this)}
-            makingPizza={this.state.makingPizza}
-            currentPizza={this.state.currentPizza}
-            />
-            
+      <div className='main-container'>
+        <PizzaList pizzas={this.state.pizzas}/>
+        <div id="middle">
+          <PizzaStatus toppingList={this.state.toppings} handleToppingClick={this.handleToppingClick.bind(this)} />
+          <div id="controls">
+            <CreateTopping 
+            startMakingTopping={this.handleMakeTopping.bind(this)}
+            makingTopping={this.state.makingTopping}
+            toppingName={this.state.topping.name}
+            changeToppingName={this.handleToppingName.bind(this)}
+            finalize={this.sendToppingAway.bind(this)}
+             />
+              <CreatePizza  
+              handleStartMakingPizza={this.startMakingPizza.bind(this)}
+              />  
           </div>
+        </div>
+        <StatusInput 
+        createPizza={this.handleSendToFire.bind(this)}
+        pizzaName={this.state.currentPizza.name}
+        updateName={this.handlePizzaName.bind(this)}
+        reset={this.handleReset.bind(this)}
+        makingPizza={this.state.makingPizza}
+        currentPizza={this.state.currentPizza}
+        />
+        
+      </div>
     );
+  }
+
+  _packageTopping(){
+    return JSON.stringify({
+      topping: this.state.topping
+    });
+
   }
 
   _packagePizza() {
