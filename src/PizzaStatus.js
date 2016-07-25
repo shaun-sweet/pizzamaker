@@ -3,21 +3,19 @@ import Topping from './Topping';
 
 class PizzaStatus extends Component {
 
-	handleToppingClick(){
-		console.log("sup");
-	}
+	
 
 	render() {
+		var _this = this;
 		return(
 			<div id='display'>
-			<h2 style={{width: 100+"%"}}>Topping List </h2>
-			{this.props.toppingList.map(function(topping, i){
-				return (
-						<Topping info={topping} key={topping.id} />
-					);
-			})
-				
-			}
+				<h2 style={{width: 100+"%"}}>Topping List </h2>
+				{this.props.toppingList.map(function(topping, i){
+					return (
+							<Topping handleToppingClick={_this.props.handleToppingClick} info={topping} key={topping.id} />
+						);
+					})
+				}
 			</div>
 			);
 	}
