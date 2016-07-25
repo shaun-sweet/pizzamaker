@@ -14,7 +14,7 @@ class StatusInput extends Component {
 	getNameOfPizza(){
 		return (
 			<div id="status-input">
-				<label htmlFor="pizza-name">Name of your pizza: </label>
+				<label htmlFor="pizza-name">Name of your pizza: </label><br />
 				<input 
 					onChange={this.props.updateName} 
 					value={this.props.pizzaName}

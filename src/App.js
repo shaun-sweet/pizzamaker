@@ -6,6 +6,7 @@ import CreatePizza from './CreatePizza';
 import Toppings from './Toppings';
 import PizzaStatus from './PizzaStatus';
 import StatusInput from './StatusInput';
+import CreateTopping from './CreateTopping';
 
 class App extends Component {
 
@@ -15,9 +16,13 @@ class App extends Component {
       pizzas: [],
       toppings: [],
       makingPizza: false,
+      makingTopping: false,
       currentPizza: {
         name: "",
         toppings: []
+      },
+      topping: {
+        name: ""
       }
     }
   }
@@ -90,7 +95,6 @@ class App extends Component {
   }
 
   handleSendToFire(){
-    console.log(this._packagePizza())
     var that = this;
     var request = new Request('https://pizzaserver.herokuapp.com/pizzas', {
       method: 'POST',
@@ -105,7 +109,25 @@ class App extends Component {
       res.json().then(function(res) {
       });
     });
-   
+    this.getPizzas();
+  }
+
+  handleMakeTopping(){
+    this.setState({
+      makingTopping: true
+    })
+  }
+
+  sendToppingAway(){
+    
+  }
+
+  handleToppingName(event) {
+    this.setState({
+      topping: {
+        name: event.target.value
+      }
+    })
   }
 
   render() {
@@ -115,9 +137,15 @@ class App extends Component {
             <div id="middle">
               <PizzaStatus toppingList={this.state.toppings} handleToppingClick={this.handleToppingClick.bind(this)} />
               <div id="controls">
-                <Toppings />
+                <CreateTopping 
+                startMakingTopping={this.handleMakeTopping.bind(this)}
+                makingTopping={this.state.makingTopping}
+                toppingName={this.state.topping.name}
+                changeToppingName={this.handleToppingName.bind(this)}
+                finalize={this.sendToppingAway}
+                 />
                   <CreatePizza  
-                  handleStartMakingPizza={this.startMakingPizza.bind(this)} 
+                  handleStartMakingPizza={this.startMakingPizza.bind(this)}
                   />  
               </div>
             </div>
