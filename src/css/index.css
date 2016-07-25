@@ -27,8 +27,20 @@ main {
 	align-items: flex-end;
 }
 
+.toppings a:hover {
+	text-decoration: none;
+	color: white;
+}
+
 .toppings {
 	padding: .2em;
+	border-radius: 4px;
+	background-color: #B6B6B6;
+	margin: .2em;
+}
+
+.toppings a {
+	color: #212121;
 }
 #new-topping {
 	display: flex;
@@ -59,3 +71,4 @@ main {
 #status-input {
 	flex: .5;
 }
+

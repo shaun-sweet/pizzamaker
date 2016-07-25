@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import PizzaList from './PizzaList';
 import CreatePizza from './CreatePizza';
-// import NewTopping from './NewTopping';
-import Toppings from './Toppings';
-import PizzaStatus from './PizzaStatus';
+import ToppingList from './ToppingList';
 import StatusInput from './StatusInput';
 import CreateTopping from './CreateTopping';
 
@@ -85,7 +83,7 @@ class App extends Component {
   startMakingPizza() {
     this.setState({makingPizza: true});
     $('#pizza-maker').toggle();
-
+    $('h1')[0].scrollIntoView();
   }
 
 
@@ -142,7 +140,7 @@ class App extends Component {
       <div className='main-container'>
         <PizzaList pizzas={this.state.pizzas}/>
         <div id="middle">
-          <PizzaStatus toppingList={this.state.toppings} handleToppingClick={this.handleToppingClick.bind(this)} />
+          <ToppingList toppingList={this.state.toppings} handleToppingClick={this.handleToppingClick.bind(this)} />
           <div id="controls">
             <CreateTopping 
             startMakingTopping={this.handleMakeTopping.bind(this)}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Topping from './Topping';
 
-class PizzaStatus extends Component {
+class ToppingList extends Component {
 
 	
 
@@ -22,4 +22,4 @@ class PizzaStatus extends Component {
 
 }
 
-export default PizzaStatus;
+export default ToppingList;
