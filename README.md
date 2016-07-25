@@ -7,3 +7,11 @@ In order to make pizzas with this application, it is pretty straightforward.  Yo
 
 #Previous Pizzas
 You can also check out previous pizzas that were created.  The last six.  Just click them and see what toppings were on them!  
+
+#Features
++ Single Page App
++ Cannot add more than one of the same topping to a pizza
++ Getting pizza toppings doesn't make an XHR call to the API server.  It's handled locally.
++ Latest pizzas refreshes every new pizza you make
++ Responsive (thanks flexbox)
++ Favicon is ridiculously cute
